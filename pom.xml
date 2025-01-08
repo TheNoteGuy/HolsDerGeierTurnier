@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>HolsDerGeierTurnier</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>projectlombok.org</id>
+            <url>http://projectlombok.org/mavenrepo</url>
+        </repository>
+        <repository>
+            <id>sonatype-nexus-releases</id>
+            <name>Sonatype Nexus Releases</name>
+            <url>https://oss.sonatype.org/content/repositories/releases/</url>
+        </repository>
+
+        <!-- Maven Central -->
+        <repository>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>LATEST</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.10.2</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>log4j-api</artifactId>
+            <groupId>org.apache.logging.log4j</groupId>
+            <version>2.17.1</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>log4j-core</artifactId>
+            <groupId>org.apache.logging.log4j</groupId>
+            <version>2.17.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-core</artifactId>
+            <version>1.0.0-M2.1</version>
+        </dependency>
+
+        <!-- ND4J Backend - CPU -->
+        <dependency>
+            <groupId>org.nd4j</groupId>
+            <artifactId>nd4j-native-platform</artifactId>
+            <version>1.0.0-M2.1</version>
+        </dependency>
+
+        <!-- SLF4J API -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.36</version>
+        </dependency>
+
+        <!-- SLF4J Simple (für Logging) -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.36</version>
+        </dependency>
+
+    </dependencies>
+
+
+</project>
