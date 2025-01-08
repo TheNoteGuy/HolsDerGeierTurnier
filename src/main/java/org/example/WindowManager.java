@@ -96,7 +96,7 @@ public class WindowManager {
             @Override
             public Dimension getPreferredSize() {
                 // Fixed width of 300px, height will be determined by layout
-                return new Dimension(300, super.getPreferredSize().height);
+                return new Dimension(800, super.getPreferredSize().height);
             }
 
             @Override

@@ -1,3 +1,4 @@
+
 package org.example;
 
 import lombok.Getter;
@@ -17,11 +18,11 @@ public class Main {
     // Color scheme
     public static final Color BACKGROUND = new Color(28, 28, 30);
     public static final Color SECONDARY_BG = new Color(44, 44, 46);
-    public static final Color ACCENT = new Color (100, 100, 166) ;
+    public static final Color ACCENT = new Color(100, 100, 166);
     public static final Color TEXT_PRIMARY = new Color(255, 255, 255);
     public static final Color TEXT_SECONDARY = new Color(174, 174, 178);
-    public static final Color SUCCESS = new Color(63,143,41);
-    public static final Color DANGER = new Color(191,16,41);
+    public static final Color SUCCESS = new Color(63, 143, 41);
+    public static final Color DANGER = new Color(191, 16, 41);
 
     // Font constants (using system font fallbacks)
     public static final String FONT_FAMILY = "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif";
@@ -78,6 +79,7 @@ public class Main {
         gamesLabel.setFont(LABEL_FONT);
         gamesLabel.setForeground(TEXT_SECONDARY);
         gamesLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        gamesLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
 
         numberOfGames.setHorizontalAlignment(JTextField.CENTER);
         numberOfGames.setFont(INPUT_FONT);
@@ -91,6 +93,7 @@ public class Main {
         ));
         numberOfGames.setCaretColor(TEXT_PRIMARY);
         numberOfGames.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
@@ -108,13 +111,12 @@ public class Main {
 
         settingsPanel.add(Box.createVerticalGlue());
         settingsPanel.add(gamesLabel);
-        settingsPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        settingsPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         settingsPanel.add(numberOfGames);
-        settingsPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        settingsPanel.add(Box.createRigidArea(new Dimension(0, 120)));
         settingsPanel.add(buttonPanel);
         settingsPanel.add(Box.createVerticalGlue());
 
-        // Main panel layout
         // Main panel layout
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setBackground(BACKGROUND);
@@ -138,7 +140,6 @@ public class Main {
         gbc.gridx = 2;
         gbc.anchor = GridBagConstraints.LINE_START; // Align to the left
         mainPanel.add(windowManager.createPlayerPanel(player2, counter2, playerAddButton2), gbc);
-
 
         windowManager = new WindowManager()
                 .setName("Tournament Manager")
