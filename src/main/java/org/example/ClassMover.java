@@ -3,6 +3,7 @@ package org.example;
 import javax.tools.*;
 import java.io.*;
 import java.net.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.*;
 
@@ -30,7 +31,7 @@ public class ClassMover {
         try {
             Files.createDirectories(compileDir);
 
-            String content = new String(Files.readAllBytes(sourcePath));
+            String content = new String(Files.readAllBytes(sourcePath), StandardCharsets.UTF_8);
 
             content = content.replaceFirst(
                     "package org.example.bots." + currentRound,
@@ -39,7 +40,7 @@ public class ClassMover {
 
             Files.createDirectories(targetPath.getParent());
 
-            Files.write(targetPath, content.getBytes());
+            Files.write(targetPath, content.getBytes(StandardCharsets.UTF_8));
 
             Files.delete(sourcePath);
 

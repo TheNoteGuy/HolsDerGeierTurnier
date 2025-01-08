@@ -30,7 +30,7 @@ public class Main {
     @Getter @Setter
     private static ArrayList<String> gameOutcomes = new ArrayList<>();
 
-    public static void main() {
+    public static void main(String[] args) {
         setupWindow();
     }
 
