@@ -1,4 +1,4 @@
-# Hols der Geier Turniersystem
+# Hol's der Geier Turniersystem
 
 ## Übersicht
 Ein automatisiertes Turniersystem für das Spiel "Hols der Geier", bei dem Bots gegeneinander antreten. Das System ermöglicht es, mehrere Runden zu spielen und automatisch die Gewinner in die nächste Runde zu befördern.
