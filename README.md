@@ -68,7 +68,7 @@ public class MeinBot extends HolsDerGeierSpieler {
 - Einfach erweiterbare Architektur
 
 ## Anforderungen
-- Java JDK 17 oder höher
+- Java JDK 21 oder höher
 - Maven für Abhängigkeiten
 - IDE (empfohlen: IntelliJ IDEA)
 
