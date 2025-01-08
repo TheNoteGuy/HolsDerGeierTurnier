@@ -4,13 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 import org.example.framework.HolsDerGeier;
 import org.example.runnables.Runnables;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
 public class Main {
-
     private static final double WIDTH_RATIO = Toolkit.getDefaultToolkit().getScreenSize().width / 1920.0;
     private static final double HEIGHT_RATIO = Toolkit.getDefaultToolkit().getScreenSize().height / 1080.0;
     private static final Color BACKGROUND_COLOR = new Color(0x686868);
@@ -25,7 +23,6 @@ public class Main {
     public static final JLabel player1 = new JLabel();
     public static final JLabel player2 = new JLabel();
     public static final TextField numberOfGames = new TextField(DEFAULT_GAMES, 1);
-
 
     @Getter @Setter
     private static ArrayList<String> gameOutcomes = new ArrayList<>();
