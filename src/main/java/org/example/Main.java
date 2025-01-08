@@ -164,7 +164,6 @@ public class Main {
                 g2.dispose();
             }
         };
-
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(SECONDARY_BG);
         panel.setBorder(new CompoundBorder(
