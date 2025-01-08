@@ -28,28 +28,21 @@ public class ClassMover {
         Path compileDir = Paths.get(PROJECT_ROOT, TEMP_COMPILE_DIR);
 
         try {
-            // Create compile directory if it doesn't exist
             Files.createDirectories(compileDir);
 
-            // Read source file
             String content = new String(Files.readAllBytes(sourcePath));
 
-            // Update package declaration
             content = content.replaceFirst(
                     "package org.example.bots." + currentRound,
                     "package org.example.bots." + targetRound
             );
 
-            // Create target directory if needed
             Files.createDirectories(targetPath.getParent());
 
-            // Write to new location
             Files.write(targetPath, content.getBytes());
 
-            // Delete original .java file
             Files.delete(sourcePath);
 
-            // Compile the moved file
             compileFile(targetPath.toString(), compileDir.toString());
 
             System.out.println("Moved and compiled " + className + " from " + currentRound + " to " + targetRound);
@@ -69,16 +62,13 @@ public class ClassMover {
         DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<>();
         StandardJavaFileManager fileManager = compiler.getStandardFileManager(diagnostics, null, null);
 
-        // Get the classpath
         String classpath = System.getProperty("java.class.path");
 
-        // Set compiler options
         List<String> options = Arrays.asList(
                 "-d", outputDir,
                 "-classpath", classpath
         );
 
-        // Create the compilation task
         Iterable<? extends JavaFileObject> compilationUnits =
                 fileManager.getJavaFileObjectsFromStrings(Arrays.asList(sourceFile));
 
@@ -91,7 +81,6 @@ public class ClassMover {
                 compilationUnits
         );
 
-        // Execute the compilation
         boolean success = task.call();
 
         if (!success) {

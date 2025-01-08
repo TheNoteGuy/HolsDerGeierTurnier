@@ -11,13 +11,10 @@ public class Runnables {
     @Setter
     private HolsDerGeier hdg = Main.hdg;
 
-    // Store runnable instances
     private final Runnable addPlayer1 = () -> hdg.addPlayer1(hdg.getPlayerBotGetter().getSpieler1());
     private final Runnable addPlayer2 = () -> hdg.addPlayer2(hdg.getPlayerBotGetter().getSpieler2());
     private final Runnable hardReset = () -> {
-        // First do the normal reset
         hdg.fullReset();
-        // Then force a rescan of available bots
         hdg.getPlayerBotGetter().forceRescan();
     };
     private final Runnable runGame = this::executeGame;

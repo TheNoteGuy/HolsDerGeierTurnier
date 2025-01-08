@@ -11,14 +11,12 @@ public class HolsDerGeier {
     private static final int MIN_CARD = 1;
     private static final int MAX_CARD = 15;
     private static final int INIT_CARDS_SIZE = 15;
-
     private final ArrayList<Integer> cards = new ArrayList<>(INIT_CARDS_SIZE);
     private final LinkedList<Integer>[] playerCards = new LinkedList[2];
     @Getter public static final HolsDerGeierSpieler[] players = new HolsDerGeierSpieler[2];
     private final int[] playerPoints = new int[2];
     private final int[] gamePoints = new int[2];
     private final SecureRandom random = new SecureRandom();
-
     @Getter private final List<Integer> winsPlayer1 = new ArrayList<>();
     @Getter private final List<Integer> winsPlayer2 = new ArrayList<>();
     @Getter private final List<Integer> draw = new ArrayList<>();
@@ -154,7 +152,6 @@ public class HolsDerGeier {
 
         if (winner != 0) gamePoints[winner < 0 ? 0 : 1]++;
 
-        // Check if tournament round is complete
         int targetGames = Integer.parseInt(Main.numberOfGames.getText());
         if (winsPlayer1.size() + winsPlayer2.size() + draw.size() >= targetGames) {
             handleTournamentResults();
@@ -177,16 +174,13 @@ public class HolsDerGeier {
                 ClassMover.moveToNextRound(player2Class);
                 ClassMover.moveToLosers(player1Class);
             } else {
-                // In case of a draw, move both to next round
                 ClassMover.moveToNextRound(player1Class);
                 ClassMover.moveToNextRound(player2Class);
             }
 
-            // Check if current round is complete
             if (playerBotGetter.isCurrentRoundEmpty()) {
                 if (playerBotGetter.isTournamentComplete()) {
                     System.out.println("Tournament completed! Final round: " + currentRound);
-                    // You might want to add UI feedback here
                 } else {
                     System.out.println("Moving to round " + (currentRound + 1));
                 }
