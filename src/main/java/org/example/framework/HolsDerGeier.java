@@ -12,7 +12,8 @@ public class HolsDerGeier {
     private static final int MAX_CARD = 15;
     private static final int INIT_CARDS_SIZE = 15;
     private final ArrayList<Integer> cards = new ArrayList<>(INIT_CARDS_SIZE);
-    private final LinkedList<Integer>[] playerCards = new LinkedList[2];
+    @SuppressWarnings("unchecked")
+    private final LinkedList<Integer>[] playerCards = (LinkedList<Integer>[]) new LinkedList[2];
     @Getter public static final HolsDerGeierSpieler[] players = new HolsDerGeierSpieler[2];
     private final int[] playerPoints = new int[2];
     private final int[] gamePoints = new int[2];

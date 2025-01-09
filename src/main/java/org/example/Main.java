@@ -59,10 +59,10 @@ public class Main {
     }
 
     private static void createAndShowGUI() {
-        JButton playerAddButton1 = windowManager.createStyledButton("Select Player 1", ACCENT);
-        JButton playerAddButton2 = windowManager.createStyledButton("Select Player 2", ACCENT);
-        JButton resetButton = windowManager.createStyledButton("Reset Tournament", DANGER);
-        JButton gameStartButton = windowManager.createStyledButton("Start Games", SUCCESS);
+        JButton playerAddButton1 = WindowManager.createStyledButton("Select Player 1", ACCENT);
+        JButton playerAddButton2 = WindowManager.createStyledButton("Select Player 2", ACCENT);
+        JButton resetButton = WindowManager.createStyledButton("Reset Tournament", DANGER);
+        JButton gameStartButton = WindowManager.createStyledButton("Start Games", SUCCESS);
 
         gameOutcomes = new ArrayList<>();
 
@@ -129,7 +129,7 @@ public class Main {
         // Left player panel
         gbc.gridx = 0;
         gbc.anchor = GridBagConstraints.LINE_END; // Align to the right
-        mainPanel.add(windowManager.createPlayerPanel(player1, counter1, playerAddButton1), gbc);
+        mainPanel.add(WindowManager.createPlayerPanel(player1, counter1, playerAddButton1), gbc);
 
         // Center settings panel
         gbc.gridx = 1;
@@ -139,7 +139,7 @@ public class Main {
         // Right player panel
         gbc.gridx = 2;
         gbc.anchor = GridBagConstraints.LINE_START; // Align to the left
-        mainPanel.add(windowManager.createPlayerPanel(player2, counter2, playerAddButton2), gbc);
+        mainPanel.add(WindowManager.createPlayerPanel(player2, counter2, playerAddButton2), gbc);
 
         windowManager = new WindowManager()
                 .setName("Tournament Manager")

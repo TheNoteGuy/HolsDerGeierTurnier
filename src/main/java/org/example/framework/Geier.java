@@ -1,6 +1,5 @@
 package org.example.framework;
 
-import org.example.framework.HolsDerGeierSpieler;
 
 /**
  * Beschreiben Sie hier die Klasse Geier.

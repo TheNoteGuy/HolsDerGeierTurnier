@@ -4,7 +4,6 @@ import lombok.Getter;
 import org.example.framework.HolsDerGeierSpieler;
 import java.io.*;
 import java.net.*;
-import java.nio.file.*;
 import java.util.*;
 
 public class PlayerBotGetter {

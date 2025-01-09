@@ -49,11 +49,11 @@ public class WindowManager {
         };
 
         button.setBackground(bgColor);
-        button.setForeground(main.TEXT_PRIMARY);
+        button.setForeground(Main.TEXT_PRIMARY);
         button.setFocusPainted(false);
         button.setBorderPainted(false);
         button.setOpaque(false);
-        button.setFont(main.LABEL_FONT);
+        button.setFont(Main.LABEL_FONT);
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         button.setPreferredSize(new Dimension(180, 32));
 
@@ -134,7 +134,7 @@ public class WindowManager {
             }
         };
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBackground(main.SECONDARY_BG);
+        panel.setBackground(Main.SECONDARY_BG);
         panel.setBorder(new CompoundBorder(
                 new EmptyBorder(2, 2, 2, 2), // Outer padding
                 new CompoundBorder(
@@ -157,14 +157,14 @@ public class WindowManager {
         // Fixed width for labels
         nameLabel.setPreferredSize(new Dimension((int)(panelWidth * 0.8), 30));
         nameLabel.setMaximumSize(new Dimension(250, 30));
-        nameLabel.setForeground(main.TEXT_PRIMARY);
-        nameLabel.setFont(main.TITLE_FONT);
+        nameLabel.setForeground(Main.TEXT_PRIMARY);
+        nameLabel.setFont(Main.TITLE_FONT);
         nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         scoreLabel.setPreferredSize(new Dimension((int)(panelWidth * 0.8), 60));
         scoreLabel.setMaximumSize(new Dimension(250, 60));
-        scoreLabel.setForeground(main.TEXT_PRIMARY);
-        scoreLabel.setFont(main.SCORE_FONT);
+        scoreLabel.setForeground(Main.TEXT_PRIMARY);
+        scoreLabel.setFont(Main.SCORE_FONT);
         scoreLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         addButton.setPreferredSize(new Dimension((int)(panelWidth * 0.6), 32));
