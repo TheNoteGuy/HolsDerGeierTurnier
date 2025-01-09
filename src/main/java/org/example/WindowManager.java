@@ -9,6 +9,7 @@ import java.awt.*;
 public class WindowManager {
     private final JFrame frame;
     private final int screenWidth;
+    private static final int widthScreen = Toolkit.getDefaultToolkit().getScreenSize().width;
     private final int screenHeight;
     public static Main main;
 
@@ -92,11 +93,12 @@ public class WindowManager {
 
     public static JPanel createPlayerPanel(JLabel nameLabel, JLabel scoreLabel, JButton addButton) {
         // Create main panel with fixed width
+        int panelWidth = (int)(widthScreen * 0.2); 
         JPanel panel = new JPanel() {
             @Override
             public Dimension getPreferredSize() {
                 // Fixed width of 300px, height will be determined by layout
-                return new Dimension(300, super.getPreferredSize().height);
+                return new Dimension(panelWidth, super.getPreferredSize().height);
             }
 
             @Override
@@ -153,19 +155,21 @@ public class WindowManager {
         panel.setOpaque(false);
 
         // Fixed width for labels
-        nameLabel.setPreferredSize(new Dimension(250, 30));
+        nameLabel.setPreferredSize(new Dimension((int)(panelWidth * 0.8), 30));
         nameLabel.setMaximumSize(new Dimension(250, 30));
         nameLabel.setForeground(main.TEXT_PRIMARY);
         nameLabel.setFont(main.TITLE_FONT);
         nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        scoreLabel.setPreferredSize(new Dimension(250, 60));
+        scoreLabel.setPreferredSize(new Dimension((int)(panelWidth * 0.8), 60));
         scoreLabel.setMaximumSize(new Dimension(250, 60));
         scoreLabel.setForeground(main.TEXT_PRIMARY);
         scoreLabel.setFont(main.SCORE_FONT);
         scoreLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        addButton.setPreferredSize(new Dimension((int)(panelWidth * 0.6), 32));
         addButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         // Add components with fixed spacing
         panel.add(Box.createVerticalGlue());
