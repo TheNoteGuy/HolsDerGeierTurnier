@@ -1,4 +1,4 @@
-package org.example.bots.round1;
+package org.example.bots.losers;
 
 import org.example.framework.GeierInfo;
 import org.example.framework.HolsDerGeierSpieler;
