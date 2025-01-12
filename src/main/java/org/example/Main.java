@@ -4,12 +4,8 @@ package org.example;
 import lombok.Getter;
 import lombok.Setter;
 
-import org.example.trainingBots.*;
-import org.example.bots.losers.IntelligentererGeier;
-import org.example.bots.losers.RandomBot;
-import org.example.bots.round1.TestBot;
+
 import org.example.framework.HolsDerGeier;
-import org.example.neuralHelpers.network.NeuralGeierTrainer;
 import org.example.runnables.Runnables;
 
 import javax.swing.*;
@@ -163,10 +159,6 @@ public class Main {
 
         runnables.getHardReset().run();
 
-
-        NeuralGeierTrainer trainer = new NeuralGeierTrainer(800,hdg);
-        trainer.addOpponents(new IntelligentererGeier(), new Loick(),new LoickV2(), new NoteGeier(), new OptimizedCounterBot(), new OptimizedArrayGeier(), new RandomBot(), new TestBot());
-        trainer.startTraining(true);
 
 
     }
