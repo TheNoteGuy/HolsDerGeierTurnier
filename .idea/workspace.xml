@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="92e7546c-3357-40a3-bbfb-c0fde08b1351" name="Changes" comment="Stuff moved">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/bots/round1/BitBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/WindowManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/WindowManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/bots/round1/RandomBot.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/bots/round1/Loick.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/bots/round1/LoickV2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/bots/round1/OptimizedArrayGeier.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/bots/round1/RandomBot.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp_compile/org/example/bots/losers/RandomBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/temp_compile/org/example/bots/losers/RandomBot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp_compile/org/example/bots/round2/BitBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/temp_compile/org/example/bots/round2/BitBot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/bots/losers/TestBot.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,12 +25,12 @@
     &quot;assignee&quot;: &quot;TheNoteGuy&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/TheNoteGuy/HolsDerGeierTurnier.git",
-    "accountId": "02ce6c1d-6ee2-4c2e-9bd6-47fbc548e1c6"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/TheNoteGuy/HolsDerGeierTurnier.git&quot;,
+    &quot;accountId&quot;: &quot;02ce6c1d-6ee2-4c2e-9bd6-47fbc548e1c6&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -51,16 +44,20 @@
   &quot;keyToString&quot;: {
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/nicon/Desktop/GitGeier/src/main/java/org/example/bots/round1&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/coding/HolsDerGeierTurnier&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;sshConsole&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -86,8 +83,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
       </set>
     </attachedChunks>
   </component>
@@ -101,6 +98,9 @@
       <updated>1736326176464</updated>
       <workItem from="1736326178127" duration="1876000" />
       <workItem from="1736328072055" duration="3141000" />
+      <workItem from="1736613800708" duration="39000" />
+      <workItem from="1736613852316" duration="46000" />
+      <workItem from="1736614895204" duration="102000" />
     </task>
     <task id="LOCAL-00001" summary="readme update">
       <option name="closed" value="true" />
