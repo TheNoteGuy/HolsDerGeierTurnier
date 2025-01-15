@@ -6,6 +6,7 @@ import lombok.Setter;
 
 
 import org.example.framework.HolsDerGeier;
+//import org.example.neuralHelpers.network.NeuralGeierTrainer;
 import org.example.runnables.Runnables;
 
 import javax.swing.*;
@@ -47,9 +48,12 @@ public class Main {
 
     public static JTextField numberOfGames = new JTextField("10000");
 
+    //static NeuralGeierTrainer trainer = new NeuralGeierTrainer(800,hdg);
+
     public static void main(String[] args) {
         setupUIStyle();
         createAndShowGUI();
+        //trainer.startTraining(false);
     }
 
     private static void setupUIStyle() {

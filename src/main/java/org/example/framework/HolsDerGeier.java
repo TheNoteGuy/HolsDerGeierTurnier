@@ -6,11 +6,14 @@ import org.example.Main;
 import org.example.PlayerBotGetter;
 import java.security.SecureRandom;
 import java.util.*;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 public class HolsDerGeier {
     private static final int MIN_CARD = 1;
     private static final int MAX_CARD = 15;
     private static final int INIT_CARDS_SIZE = 15;
+
     private final ArrayList<Integer> cards = new ArrayList<>(INIT_CARDS_SIZE);
     @SuppressWarnings("unchecked")
     private final LinkedList<Integer>[] playerCards = (LinkedList<Integer>[]) new LinkedList[2];
@@ -18,10 +21,12 @@ public class HolsDerGeier {
     private final int[] playerPoints = new int[2];
     private final int[] gamePoints = new int[2];
     private final SecureRandom random = new SecureRandom();
+
     @Getter private final List<Integer> winsPlayer1 = new ArrayList<>();
     @Getter private final List<Integer> winsPlayer2 = new ArrayList<>();
     @Getter private final List<Integer> draw = new ArrayList<>();
-    @Getter public final PlayerBotGetter playerBotGetter = new PlayerBotGetter();
+    @Getter private final PlayerBotGetter playerBotGetter = new PlayerBotGetter();
+
     @Getter public static long timeStart = 0;
     @Getter public static long timeStart1 = 0;
 
@@ -40,8 +45,8 @@ public class HolsDerGeier {
             if (i != 0) cards.add(i);
         }
 
-        players[0].reset();
-        players[1].reset();
+        if (players[0] != null) players[0].reset();
+        if (players[1] != null) players[1].reset();
     }
 
     public void fullReset() {
@@ -65,23 +70,16 @@ public class HolsDerGeier {
     public void addPlayer1(HolsDerGeierSpieler player1) {
         players[0] = player1;
         player1.register(this, 0);
-        Main.windowManager.changeLabel(Main.player1, player1.getClass().getAnnotation(GeierInfo.class).name());
+        Main.windowManager.changeLabel(Main.player1,
+                player1.getClass().getAnnotation(GeierInfo.class).name());
         winsPlayer1.clear();
     }
 
     public void addPlayer2(HolsDerGeierSpieler player2) {
         players[1] = player2;
         player2.register(this, 1);
-        Main.windowManager.changeLabel(Main.player2, player2.getClass().getAnnotation(GeierInfo.class).name());
-        winsPlayer2.clear();
-    }
-
-    public void neueSpieler(HolsDerGeierSpieler player1, HolsDerGeierSpieler player2) {
-        players[0] = player1;
-        players[1] = player2;
-        player1.register(this, 0);
-        player2.register(this, 1);
-        winsPlayer1.clear();
+        Main.windowManager.changeLabel(Main.player2,
+                player2.getClass().getAnnotation(GeierInfo.class).name());
         winsPlayer2.clear();
     }
 
@@ -91,19 +89,24 @@ public class HolsDerGeier {
     }
 
     private int getGeierCard() {
+        if (cards.isEmpty()) return 0;
         return cards.remove(random.nextInt(cards.size()));
     }
 
     public void newGame() throws Exception {
         if (cards.isEmpty()) resetGame();
-        if (players[0] == null || players[1] == null) throw new Exception("Players are missing!");
+        if (players[0] == null || players[1] == null) {
+            throw new Exception("Players are missing!");
+        }
         runGame();
     }
 
     public void newGame(int numberOfGames) throws Exception {
         for (int i = 0; i < numberOfGames; i++) {
             resetGame();
-            if (players[0] == null || players[1] == null) throw new Exception("Players are missing!");
+            if (players[0] == null || players[1] == null) {
+                throw new Exception("Players are missing!");
+            }
             runGame();
         }
     }
@@ -113,14 +116,37 @@ public class HolsDerGeier {
         timeStart = System.currentTimeMillis();
 
         while (!cards.isEmpty()) {
+            checkForCheating();
+
             int geierCard = getGeierCard();
             int[] pCards = new int[2];
 
             for (int i = 0; i < 2; i++) {
-                int toPlay = players[i].gibKarte(geierCard);
-                validateCard(i, toPlay);
-                playerCards[i].add(toPlay);
-                pCards[i] = toPlay;
+                try {
+                    int toPlay = players[i].gibKarte(geierCard);
+                    try {
+                        validateCard(i, toPlay);
+                    } catch (Exception e) {
+                        // Zeige detailliertere Fehlermeldung für ungültige Karten
+                        String playerName = players[i].getClass().getAnnotation(GeierInfo.class).name();
+                        SwingUtilities.invokeLater(() -> {
+                            JOptionPane.showMessageDialog(null,
+                                    "Invalid card played by " + playerName + "!\n" +
+                                            "Card value: " + toPlay + "\n" +
+                                            "Valid range is 1-15\n" +
+                                            "This might be a programming error rather than cheating.",
+                                    "Invalid Move",
+                                    JOptionPane.WARNING_MESSAGE);
+                        });
+                        fullReset();
+                        throw e;
+                    }
+                    playerCards[i].add(toPlay);
+                    pCards[i] = toPlay;
+                } catch (Exception e) {
+                    handleCheatingAttempt("Attempt to manipulate game state by player " + (i+1));
+                    return;
+                }
             }
 
             if (pCards[0] != pCards[1]) {
@@ -133,6 +159,82 @@ public class HolsDerGeier {
             }
         }
 
+        handleGameEnd();
+    }
+
+    private void checkForCheating() {
+        // Überprüfe auf unrealistische Punktzahlen
+        for (int points : playerPoints) {
+            if (Math.abs(points) > 100) {
+                handleCheatingAttempt("Unrealistic score detected");
+            }
+        }
+
+        // Überprüfe auf doppelte Karten pro Spieler
+        for (int i = 0; i < 2; i++) {
+            Set<Integer> playerUsedCards = new HashSet<>();
+            for (Integer card : playerCards[i]) {
+                // Prüfe auf null oder ungültige Kartenwerte
+                if (card == null) {
+                    handleCheatingAttempt("Player " + (i+1) + " played null card");
+                }
+
+                // Prüfe auf Karten außerhalb des erlaubten Bereichs
+                if (card < MIN_CARD || card > MAX_CARD) {
+                    handleCheatingAttempt("Player " + (i+1) + " played invalid card value: " + card);
+                }
+
+                // Prüfe auf Duplikate
+                if (!playerUsedCards.add(card)) {
+                    handleCheatingAttempt("Player " + (i+1) + " used duplicate card: " + card);
+                }
+            }
+
+            // Prüfe auf verdächtige Kartenfolgen
+            LinkedList<Integer> playerMoves = playerCards[i];
+            if (playerMoves.size() >= 2) {
+                int lastMove = playerMoves.getLast();
+                int previousMove = playerMoves.get(playerMoves.size() - 2);
+                if (lastMove == previousMove) {
+                    handleCheatingAttempt("Player " + (i+1) + " played same card twice in a row: " + lastMove);
+                }
+            }
+        }
+
+        // Prüfe auf Reflection oder andere verdächtige Stacktrace-Elemente
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        for (StackTraceElement element : stackTrace) {
+            if (element.getClassName().contains("reflect")) {
+                handleCheatingAttempt("Player attempted to use reflection");
+            }
+        }
+    }
+
+    private void handleCheatingAttempt(String reason) {
+        // Identifiziere den Cheater (Spieler der zuletzt gezogen hat)
+        HolsDerGeierSpieler cheater = players[playerCards[0].size() > playerCards[1].size() ? 0 : 1];
+        String cheaterName = cheater.getClass().getAnnotation(GeierInfo.class).name();
+
+        SwingUtilities.invokeLater(() -> {
+            JOptionPane.showMessageDialog(null,
+                    "CHEATER DETECTED!\nPlayer: " + cheaterName + "\nReason: " + reason,
+                    "Security Alert",
+                    JOptionPane.ERROR_MESSAGE);
+        });
+
+        // Verschiebe den Cheater in den Losers-Ordner
+        try {
+            ClassMover.moveToLosers(cheater.getClass());
+            System.out.println("Moved cheater " + cheaterName + " to losers folder");
+        } catch (Exception e) {
+            System.err.println("Failed to move cheater to losers: " + e.getMessage());
+        }
+
+        fullReset();
+        throw new SecurityException("Cheating attempt detected: " + reason + " by " + cheaterName);
+    }
+
+    private void handleGameEnd() {
         int winner = Integer.compare(playerPoints[1], playerPoints[0]);
         long timeEnd = System.currentTimeMillis();
 
@@ -190,8 +292,6 @@ public class HolsDerGeier {
             System.err.println("Tournament handling failed: " + e.getMessage());
         }
     }
-
-
 
     private void validateCard(int player, int card) throws Exception {
         if (playerCards[player].contains(card) || card < MIN_CARD || card > MAX_CARD) {
